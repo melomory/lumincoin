@@ -1,3 +1,4 @@
+import { Login } from "./components/auth/login.js";
 import { Signup } from "./components/auth/signup.js";
 
 export class Router {
@@ -7,7 +8,7 @@ export class Router {
     this.routes = [];
 
     // TODO: сделать маршруты.
-    // Создание объектов сделано для корректной сборки.
-    new Signup();
+    // new Signup();
+    // new Login();
   }
 }
