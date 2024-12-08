@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Вход</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -12,19 +12,12 @@
     <script defer="defer" src="/app.js"></script>
   </head>
   <body>
-    <main class="d-flex flex-column justify-content-center align-items-center signup">
+    <main class="d-flex flex-column justify-content-center align-items-center login">
       <div class="mb-2">
         <img src="/assets/images/logo.svg" alt="Логотип">
       </div>
       <form class="d-flex flex-column gap-2 novalidate">
-        <h1 class="pt-5 mb-3 text-center">Создайте аккаунт</h1>
-        <div class="input-group">
-          <label class="input-group-text" for="full-name">
-            <span class="far fa-user input-icon text-secondary"></span>
-          </label>
-          <input class="form-control" type="text" id="full-name" placeholder="ФИО">
-          <div id="name-error" class="invalid-feedback">Заполните ФИО</div>
-        </div>
+        <h1 class="pt-5 mb-3 text-center">Вход</h1>
         <div class="input-group">
           <label class="input-group-text" for="email">
             <span class="far fa-envelope-open input-icon text-secondary"></span>
@@ -39,17 +32,13 @@
           <input class="form-control" type="password" id="password" placeholder="Пароль">
           <div id="password-error" class="invalid-feedback">Заполните пароль</div>
         </div>
-        <div class="input-group">
-          <label class="input-group-text" for="password-repeat">
-            <span class="input-icon"><img src="/assets/images/icons/lock.svg" alt=""></span>
-          </label>
-          <input class="form-control" type="password" id="password-repeat" placeholder="Подтверждение пароля">
-          <div id="password-repeat-error" class="invalid-feedback">Пароль и подтверждение пароля должны
-            совпадать</div>
+        <div class="form-check remember-me mt-1">
+          <label class="form-check-label" for="remember-me">Запомнить меня</label>
+          <input class="form-check-input" type="checkbox" id="remember-me">
         </div>
         <button type="button" class="btn btn-primary mt-3" id="process-button">Войти</button>
-        <p class="auth-links">Уже есть аккаунт?<a href="/pages/auth/login.html"
-            class="d-inline-block link-underline-primary ps-2">Войдите в систему</a></p>
+        <p class="auth-links">Еще нет аккаунта?<a href="/pages/auth/signup.html"
+            class="d-inline-block link-underline-primary ps-2">Пройдите регистрацию</a></p>
       </form>
     </main>
   </body>

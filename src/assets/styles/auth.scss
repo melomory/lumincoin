@@ -19,3 +19,26 @@
     font-size: 0.75rem;
   }
 }
+
+.login {
+  padding-top: 315px;
+
+  .input-icon {
+    width: 1rem;
+  }
+
+  form {
+    width: 397px;
+  }
+
+  @media screen and (max-width: 460px) {
+    form {
+      width: 85%;
+    }
+  }
+
+  .auth-links,
+  .remember-me {
+    font-size: 0.75rem;
+  }
+}
