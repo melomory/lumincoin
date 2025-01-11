@@ -70,6 +70,14 @@ module.exports = (env, argv) => {
             },
           },
           {
+            from: "src/layouts/",
+            to: "layouts",
+            globOptions: {
+              dot: true,
+              ignore: ["**/.gitkeep"],
+            },
+          },
+          {
             from: "src/assets/images",
             to: "assets/images",
             globOptions: {
@@ -80,6 +88,10 @@ module.exports = (env, argv) => {
           {
             from: "./node_modules/bootstrap/dist/css/bootstrap.min.css",
             to: "lib/bootstrap/css",
+          },
+          {
+            from: "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            to: "lib/bootstrap/js",
           },
           {
             from: "./node_modules/@fortawesome/fontawesome-free/webfonts",
