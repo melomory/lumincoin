@@ -6,6 +6,8 @@ import { ExpensesCategoryList } from "./components/categories/expenses/list.js";
 import { IncomeCategoryCreate } from "./components/categories/income/create.js";
 import { IncomeCategoryEdit } from "./components/categories/income/edit.js";
 import { IncomeCategoryList } from "./components/categories/income/list.js";
+import { IncomeAndExpensesCreate } from "./components/income-and-expenses/create.js";
+import { IncomeAndExpensesEdit } from "./components/income-and-expenses/edit.js";
 import { IncomeAndExpensesList } from "./components/income-and-expenses/list.js";
 import { MainLayout } from "./components/main-layout.js";
 import { Main } from "./components/main.js";
@@ -27,6 +29,8 @@ export class Router {
     // new ExpensesCategoryList();
     // new ExpensesCategoryCreate();
     // new ExpensesCategoryEdit();
-    new IncomeAndExpensesList();
+    // new IncomeAndExpensesList();
+    // new IncomeAndExpensesCreate();
+    new IncomeAndExpensesEdit();
   }
 }
