@@ -1,6 +1,7 @@
 import { Login } from "./components/auth/login.js";
 import { Signup } from "./components/auth/signup.js";
 import { IncomeCategoryCreate } from "./components/categories/income/create.js";
+import { IncomeCategoryEdit } from "./components/categories/income/edit.js";
 import { IncomeCategoryList } from "./components/categories/income/list.js";
 import { MainLayout } from "./components/main-layout.js";
 import { Main } from "./components/main.js";
@@ -17,6 +18,7 @@ export class Router {
     // new MainLayout();
     // new Main();
     // new IncomeCategoryList();
-    new IncomeCategoryCreate();
+    // new IncomeCategoryCreate();
+    new IncomeCategoryEdit();
   }
 }
