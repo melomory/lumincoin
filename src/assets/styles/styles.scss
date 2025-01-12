@@ -189,3 +189,49 @@ body {
 .form-control {
   max-width: 24.8rem;
 }
+
+.income-and-expenses {
+  .btn {
+    font-size: 0, 875rem;
+    font-weight: 500;
+    min-width: 100px;
+    font-weight: 500;
+    letter-spacing: 0.0625rem;
+  }
+
+  .date-control {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+
+    input {
+      color: #6c757d;
+      width: 150px;
+      border-radius: 5px;
+      border: 1px solid gray;
+      outline: none;
+    }
+  }
+
+  div:has(#option-range:checked) + div > .date-control {
+    display: flex;
+  }
+
+  .table th {
+    color: #052c65;
+    letter-spacing: 1.33px;
+    font-weight: 500;
+  }
+
+  .table thead {
+    border-top-width: var(--bs-border-width);
+  }
+
+  .table th:first-of-type {
+    width: 8rem;
+  }
+
+  .table th:last-of-type {
+    width: 4rem;
+  }
+}
