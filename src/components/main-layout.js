@@ -18,3 +18,6 @@ export class MainLayout {
     this.navigationLinks = document.querySelectorAll(".sidebar :not(#categories-group) .nav-link");
   }
 }
+
+// TODO: удалить после реализации маршрутизации.
+new MainLayout();

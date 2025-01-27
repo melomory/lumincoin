@@ -29,7 +29,10 @@ export class Signup {
 
   async signUp() {
     for (let i = 0; i < this.validations.length; i++) {
-      if (this.validations[i].element === this.passwordRepeatElement) {
+      if (
+        this.passwordRepeatElement &&
+        this.validations[i].element === this.passwordRepeatElement
+      ) {
         this.validations[i].options.compareTo =
           this.passwordRepeatElement.value;
       }
@@ -50,6 +53,10 @@ export class Signup {
   }
 
   validateField(element, options) {
+    if (!element) {
+      return false;
+    }
+
     let condition = element.value;
     if (options) {
       if (options.hasOwnProperty("pattern")) {
@@ -68,3 +75,6 @@ export class Signup {
     return false;
   }
 }
+
+// TODO: удалить после реализации маршрутизации.
+new Signup();

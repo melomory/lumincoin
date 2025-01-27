@@ -1,16 +1,16 @@
-import { Login } from "./components/auth/login.js";
-import { Signup } from "./components/auth/signup.js";
-import { ExpensesCategoryCreate } from "./components/categories/expenses/create.js";
-import { ExpensesCategoryEdit } from "./components/categories/expenses/edit.js";
-import { ExpensesCategoryList } from "./components/categories/expenses/list.js";
-import { IncomeCategoryCreate } from "./components/categories/income/create.js";
-import { IncomeCategoryEdit } from "./components/categories/income/edit.js";
-import { IncomeCategoryList } from "./components/categories/income/list.js";
-import { IncomeAndExpensesCreate } from "./components/income-and-expenses/create.js";
-import { IncomeAndExpensesEdit } from "./components/income-and-expenses/edit.js";
-import { IncomeAndExpensesList } from "./components/income-and-expenses/list.js";
-import { MainLayout } from "./components/main-layout.js";
-import { Main } from "./components/main.js";
+// import { Login } from "./components/auth/login.js";
+// import { Signup } from "./components/auth/signup.js";
+// import { ExpensesCategoryCreate } from "./components/categories/expenses/create.js";
+// import { ExpensesCategoryEdit } from "./components/categories/expenses/edit.js";
+// import { ExpensesCategoryList } from "./components/categories/expenses/list.js";
+// import { IncomeCategoryCreate } from "./components/categories/income/create.js";
+// import { IncomeCategoryEdit } from "./components/categories/income/edit.js";
+// import { IncomeCategoryList } from "./components/categories/income/list.js";
+// import { IncomeAndExpensesCreate } from "./components/income-and-expenses/create.js";
+// import { IncomeAndExpensesEdit } from "./components/income-and-expenses/edit.js";
+// import { IncomeAndExpensesList } from "./components/income-and-expenses/list.js";
+// import { MainLayout } from "./components/main-layout.js";
+// import { Main } from "./components/main.js";
 
 export class Router {
   constructor() {
@@ -19,18 +19,18 @@ export class Router {
     this.routes = [];
 
     // TODO: сделать маршруты.
-    // new Signup();
-    // new Login();
-    // new MainLayout();
-    // new Main();
-    // new IncomeCategoryList();
-    // new IncomeCategoryCreate();
-    // new IncomeCategoryEdit();
-    // new ExpensesCategoryList();
-    // new ExpensesCategoryCreate();
-    // new ExpensesCategoryEdit();
-    // new IncomeAndExpensesList();
-    // new IncomeAndExpensesCreate();
-    new IncomeAndExpensesEdit();
+    //  new Signup();
+    //  new Login();
+    //  new MainLayout();
+    //  new Main();
+    //  new IncomeCategoryList();
+    //  new IncomeCategoryCreate();
+    //  new IncomeCategoryEdit();
+    //  new ExpensesCategoryList();
+    //  new ExpensesCategoryCreate();
+    //  new ExpensesCategoryEdit();
+    //  new IncomeAndExpensesList();
+    //  new IncomeAndExpensesCreate();
+    //  new IncomeAndExpensesEdit();
   }
 }
