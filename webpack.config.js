@@ -101,6 +101,15 @@ module.exports = (env, argv) => {
             from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             to: "lib/fontawesome-free/css",
           },
+          {
+            // TODO: удалить после реализации маршрутизации.
+            from: "src/components",
+            to: "components",
+            globOptions: {
+              dot: true,
+              ignore: ["**/.gitkeep"],
+            },
+          },
         ],
       }),
     ].concat(

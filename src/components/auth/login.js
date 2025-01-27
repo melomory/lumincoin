@@ -55,3 +55,6 @@ export class Login {
     return false;
   }
 }
+
+// TODO: удалить после реализации маршрутизации.
+new Login();

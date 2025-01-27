@@ -1,4 +1,5 @@
-import Chart from "chart.js/auto";
+// TODO раскоментировать при реализации сборки.
+// import Chart from "chart.js/auto";
 
 export class Main {
   constructor() {
@@ -47,8 +48,10 @@ export class Main {
     };
 
     // TODO: добавить данные, выполнить рефакторинг.
-    new Chart(this.incomeChart, config);
-    new Chart(this.expensesChart, config);
+    if (this.incomeChart && this.expensesChart) {
+      new Chart(this.incomeChart, config);
+      new Chart(this.expensesChart, config);
+    }
   }
 
   findElements() {
@@ -57,3 +60,6 @@ export class Main {
     this.dateControlInputs = document.querySelectorAll(".date-control input");
   }
 }
+
+// TODO: удалить после реализации маршрутизации.
+new Main();

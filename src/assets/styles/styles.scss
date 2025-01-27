@@ -14,14 +14,14 @@ body {
 
 @import "auth.scss";
 
+.logo {
+  width: 6.125rem !important;
+}
+
 .sidebar {
   font-size: 0.875rem;
   width: 13.6875rem;
   min-height: 100vh;
-
-  .logo {
-    width: 6.125rem;
-  }
 
   .nav-link {
     padding: 0.7142857em 1.142857em;
@@ -146,7 +146,7 @@ body {
 
   .card {
     --bs-border-radius: 0.714rem;
-    width: 22rem;
+    max-width: 22rem;
     height: 7.5625rem;
 
     .btn {
@@ -235,3 +235,30 @@ body {
     width: 4rem;
   }
 }
+
+@media screen and (max-width: 976px) {
+  .main {
+    .chart-container {
+      height: 50vw;
+      width: 50vw;
+    }
+
+    .border-between > [class*="col-"]::before {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .main {
+    .chart-container {
+      height: 75vw;
+      width: 75vw;
+    }
+
+    .border-between > [class*="col-"]::before {
+      display: none;
+    }
+  }
+}
+
