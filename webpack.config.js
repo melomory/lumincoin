@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = (env, argv) => {
   return {
@@ -56,6 +57,7 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new Dotenv(),
       new HtmlWebpackPlugin({
         template: "src/index.html",
       }),
@@ -102,14 +104,9 @@ module.exports = (env, argv) => {
             to: "lib/fontawesome-free/css",
           },
           {
-            // TODO: удалить после реализации маршрутизации.
-            from: "src/components",
-            to: "components",
-            globOptions: {
-              dot: true,
-              ignore: ["**/.gitkeep"],
-            },
-          },
+            from: "./.env",
+            to: "./",
+          }
         ],
       }),
     ].concat(

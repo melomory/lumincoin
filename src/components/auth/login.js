@@ -1,5 +1,15 @@
+import { AuthUtils } from "./../../utilities/auth-utils.js";
+import { ValidationUtils } from "./../../utilities/validation-utils.js";
+import { AuthService } from "./../../services/auth-service.js";
+
 export class Login {
-  constructor() {
+  constructor(openNewRoute) {
+    this.openNewRoute = openNewRoute;
+
+    if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
+      return this.openNewRoute("/");
+    }
+
     this.findElements();
 
     this.validations = [
@@ -18,43 +28,32 @@ export class Login {
   findElements() {
     this.emailElement = document.getElementById("email");
     this.passwordElement = document.getElementById("password");
+    this.rememberMeElement = document.getElementById("remember-me");
   }
 
   async login() {
-    this.validateForm(this.validations);
-  }
+    if (ValidationUtils.validateForm(this.validations)) {
+      const loginResult = await AuthService.login({
+        email: this.emailElement.value,
+        password: this.passwordElement.value,
+        rememberMe: this.rememberMeElement.checked,
+      });
 
-  validateForm(validations) {
-    let isValid = true;
+      if (loginResult) {
+        AuthUtils.setAuthInfo(
+          loginResult.tokens.accessToken,
+          loginResult.tokens.refreshToken,
+          {
+            id: loginResult.user.id,
+            name: loginResult.user.name,
+            lastName: loginResult.user.lastName
+          }
+        );
 
-    for (let i = 0; i < validations.length; i++) {
-      if (!this.validateField(validations[i].element, validations[i].options)) {
-        isValid = false;
+        return this.openNewRoute("/");
+      } else {
+        alert("Неверный логин или пароль.");
       }
     }
-
-    return isValid;
-  }
-
-  validateField(element, options) {
-    let condition = element.value;
-    if (options) {
-      if (options.hasOwnProperty("pattern")) {
-        condition = element.value && element.value.match(options.pattern);
-      } else if (options.hasOwnProperty("compareTo")) {
-        condition = element.value && element.value === options.compareTo;
-      }
-    }
-
-    if (condition) {
-      element.classList.remove("is-invalid");
-      return true;
-    }
-
-    element.classList.add("is-invalid");
-    return false;
   }
 }
-
-// TODO: удалить после реализации маршрутизации.
-new Login();
