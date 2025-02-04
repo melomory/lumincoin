@@ -1,14 +1,20 @@
-// TODO раскоментировать при реализации сборки.
-// import Chart from "chart.js/auto";
+import Chart from "chart.js/auto";
+import { AuthUtils } from "./../utilities/auth-utils.js";
 
 export class Main {
-  constructor() {
+  constructor(openNewRoute) {
+    this.openNewRoute = openNewRoute;
+
+    if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
+      return this.openNewRoute("/login");
+    }
+
     this.findElements();
 
     this.dateControlInputs.forEach((item) => {
       item.addEventListener("focus", function () {
         if (this.value) {
-          let date = this.value.split('.');
+          let date = this.value.split(".");
           this.value = `${date[2]}-${date[1]}-${date[0]}`;
         }
 
@@ -17,7 +23,7 @@ export class Main {
       item.addEventListener("blur", function () {
         this.type = "text";
         if (this.value) {
-          let date = this.value.split('-');
+          let date = this.value.split("-");
           this.value = `${date[2]}.${date[1]}.${date[0]}`;
         }
       });
@@ -60,6 +66,3 @@ export class Main {
     this.dateControlInputs = document.querySelectorAll(".date-control input");
   }
 }
-
-// TODO: удалить после реализации маршрутизации.
-new Main();

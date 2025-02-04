@@ -25,18 +25,20 @@ body {
 
   .nav-link {
     padding: 0.7142857em 1.142857em;
-  }
-
-  .sidebar-item-color {
-    color: #052c65 !important;
+    --bs-nav-link-color: #052c65;
   }
 
   .balance {
     font-weight: 500;
   }
 
+  .sidebar-item-color {
+    color: #052c65;
+  }
+
   .btn-toggle {
     padding: 0.7142857em 1.142857em;
+    color: #052c65;
   }
 
   .btn-toggle::after {
@@ -141,12 +143,13 @@ body {
   }
 }
 
-.income-list {
+.category-list {
   color: #052c65;
 
   .card {
     --bs-border-radius: 0.714rem;
     max-width: 22rem;
+    min-width: 17rem;
     height: 7.5625rem;
 
     .btn {
@@ -234,6 +237,11 @@ body {
   .table th:last-of-type {
     width: 4rem;
   }
+}
+
+.error-page {
+  text-align: center;
+  margin: 4rem 1rem;
 }
 
 @media screen and (max-width: 976px) {
