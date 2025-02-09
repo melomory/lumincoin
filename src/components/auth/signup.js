@@ -1,5 +1,15 @@
+import { AuthUtils } from "./../../utilities/auth-utils.js";
+import { ValidationUtils } from "./../../utilities/validation-utils.js";
+import { AuthService } from "./../../services/auth-service.js";
+
 export class Signup {
-  constructor() {
+  constructor(openNewRoute) {
+    this.openNewRoute = openNewRoute;
+
+    if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
+      return this.openNewRoute("/");
+    }
+
     this.findElements();
 
     this.validations = [
@@ -37,44 +47,24 @@ export class Signup {
           this.passwordRepeatElement.value;
       }
     }
-    this.validateForm(this.validations);
-  }
 
-  validateForm(validations) {
-    let isValid = true;
+    if (ValidationUtils.validateForm(this.validations)) {
+      const [lastName, name] = this.fullNameElement.value
+        .split(" ")
+        .map((x) => x.trim());
+      const signupResult = await AuthService.signup({
+        name: name,
+        lastName: lastName,
+        email: this.emailElement.value,
+        password: this.passwordElement.value,
+        passwordRepeat: this.passwordRepeatElement.value,
+      });
 
-    for (let i = 0; i < validations.length; i++) {
-      if (!this.validateField(validations[i].element, validations[i].options)) {
-        isValid = false;
+      if (signupResult) {
+        return this.openNewRoute("/login");
+      } else {
+        alert("Не удалось создать аккаунт.");
       }
     }
-
-    return isValid;
-  }
-
-  validateField(element, options) {
-    if (!element) {
-      return false;
-    }
-
-    let condition = element.value;
-    if (options) {
-      if (options.hasOwnProperty("pattern")) {
-        condition = element.value && element.value.match(options.pattern);
-      } else if (options.hasOwnProperty("compareTo")) {
-        condition = element.value && element.value === options.compareTo;
-      }
-    }
-
-    if (condition) {
-      element.classList.remove("is-invalid");
-      return true;
-    }
-
-    element.classList.add("is-invalid");
-    return false;
   }
 }
-
-// TODO: удалить после реализации маршрутизации.
-new Signup();

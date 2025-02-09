@@ -1,4 +1,4 @@
-export class IncomeAndExpensesCreate {
+export class IncomeCategoryDelete {
   constructor(openNewRoute) {
     this.openNewRoute = openNewRoute;
   }
