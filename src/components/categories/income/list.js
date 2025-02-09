@@ -62,10 +62,11 @@ export class IncomeCategoryList {
 
     const cardEmptyElement = document.createElement("div");
     cardEmptyElement.classList.add("card", "p-1", "blank", "fs-3", "d-flex", "align-items-center", "justify-content-center");
+    cardEmptyElement.onclick = () => this.openNewRoute("/income/create");
+
     const signElement = document.createElement("p");
     signElement.classList.add("add-sign");
     signElement.innerText = "+";
-    signElement.onclick = () => this.openNewRoute("/income/create");
 
     cardEmptyElement.appendChild(signElement);
     categoriesElement.appendChild(cardEmptyElement);

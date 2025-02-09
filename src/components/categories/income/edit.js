@@ -19,7 +19,7 @@ export class IncomeCategoryEdit {
 
     document
       .getElementById("cancel-button")
-      .addEventListener("click", () => this.openNewRoute("/income"));
+      .addEventListener("click", this.cancel.bind(this));
 
     this.validations = [{ element: this.categoryNameElement }];
 
@@ -101,5 +101,15 @@ export class IncomeCategoryEdit {
 
       return this.openNewRoute("/income");
     }
+  }
+
+  /**
+   * Отменить редактирование.
+   * @param {Object} e Аргумент события.
+   */
+  cancel(e) {
+    e.preventDefault();
+
+    this.openNewRoute("/expenses");
   }
 }
