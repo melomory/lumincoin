@@ -213,7 +213,7 @@ export class Router {
             let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey);
             if (!this.userName) {
               userInfo = JSON.parse(userInfo);
-              if (userInfo.name || userInfo.lastName) {
+              if (userInfo && (userInfo.name || userInfo.lastName)) {
                 this.userName = [userInfo.name, userInfo.lastName].join(" ");
               }
             }
