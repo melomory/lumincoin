@@ -34,7 +34,7 @@ export class ExpensesCategoryDelete {
   }
 
   /**
-   * Отменить редактирование.
+   * Отменить удаление.
    * @param {Object} e Аргумент события.
    */
   cancel(e) {
