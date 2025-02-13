@@ -1,6 +1,6 @@
-import { AuthUtils } from "./../../utilities/auth-utils.js";
-import { ValidationUtils } from "./../../utilities/validation-utils.js";
-import { AuthService } from "./../../services/auth-service.js";
+import { AuthUtils } from "../../utilities/auth-utils.js";
+import { ValidationUtils } from "../../utilities/validation-utils.js";
+import { AuthService } from "../../services/auth-service.js";
 
 export class Login {
   constructor(openNewRoute) {
@@ -15,7 +15,7 @@ export class Login {
     this.validations = [
       {
         element: this.emailElement,
-        options: { pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ },
+        options: { pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/ },
       },
       { element: this.passwordElement },
     ];

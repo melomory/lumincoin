@@ -1,37 +1,37 @@
-import { IncomeCategoryService } from "../../../services/income-category-service.js";
-import { UrlUtils } from "../../../utilities/url-utils.js";
+import { OperationsService } from "../../services/operations-service.js";
+import { UrlUtils } from "../../utilities/url-utils.js";
 
-export class IncomeCategoryDelete {
+export class OperationsDelete {
   constructor(openNewRoute) {
     this.openNewRoute = openNewRoute;
 
     const id = UrlUtils.getUrlParam("id");
     if (!id) {
-      return this.openNewRoute("/income");
+      return this.openNewRoute("/operations");
     }
 
     document
       .getElementById("confirm-button")
-      .addEventListener("click", () => this.deleteCategory(id));
+      .addEventListener("click", () => this.deleteOperation(id));
     document
       .getElementById("cancel-button")
       .addEventListener("click", this.cancel.bind(this));
   }
 
   /**
-   * Удалить категорию.
-   * @param {Number} id Ид категории.
+   * Удалить операцию.
+   * @param {Number} id Ид операции.
    * @returns
    */
-  async deleteCategory(id) {
-    const response = await IncomeCategoryService.deleteCategory(id);
+  async deleteOperation(id) {
+    const response = await OperationsService.deleteOperation(id);
 
     if (response.error) {
       alert(response.error);
       return response.redirect ? this.openNewRoute(response.redirect) : null;
     }
 
-    return this.openNewRoute("/income");
+    return this.openNewRoute("/operations");
   }
 
   /**
@@ -41,6 +41,6 @@ export class IncomeCategoryDelete {
   cancel(e) {
     e.preventDefault();
 
-    this.openNewRoute("/income");
+    window.history.pushState({}, null, "/operations");
   }
 }

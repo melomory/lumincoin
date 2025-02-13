@@ -9,10 +9,10 @@ import { IncomeCategoryCreate } from "./components/categories/income/create.js";
 import { IncomeCategoryDelete } from "./components/categories/income/delete.js";
 import { IncomeCategoryEdit } from "./components/categories/income/edit.js";
 import { IncomeCategoryList } from "./components/categories/income/list.js";
-import { IncomeAndExpensesCreate } from "./components/income-and-expenses/create.js";
-import { IncomeAndExpensesDelete } from "./components/income-and-expenses/delete.js";
-import { IncomeAndExpensesEdit } from "./components/income-and-expenses/edit.js";
-import { IncomeAndExpensesList } from "./components/income-and-expenses/list.js";
+import { OperationsCreate } from "./components/operations/create.js";
+import { OperationsDelete } from "./components/operations/delete.js";
+import { OperationsEdit } from "./components/operations/edit.js";
+import { OperationsList } from "./components/operations/list.js";
 import { Main } from "./components/main.js";
 import { AuthUtils } from "./utilities/auth-utils.js";
 
@@ -64,36 +64,36 @@ export class Router {
         },
       },
       {
-        route: "/income-and-expenses",
+        route: "/operations",
         title: "Доходы & Расходы",
-        filePathPage: "/pages/income-and-expenses/list.html",
+        filePathPage: "/pages/operations/list.html",
         useLayout: "/layouts/main.html",
         load: () => {
-          new IncomeAndExpensesList(this.openNewRoute.bind(this));
+          new OperationsList(this.openNewRoute.bind(this));
         },
       },
       {
-        route: "/income-and-expenses/create",
+        route: "/operations/create",
         title: "Создание дохода/расхода",
-        filePathPage: "/pages/income-and-expenses/create.html",
+        filePathPage: "/pages/operations/create.html",
         useLayout: "/layouts/main.html",
         load: () => {
-          new IncomeAndExpensesCreate(this.openNewRoute.bind(this));
+          new OperationsCreate(this.openNewRoute.bind(this));
         },
       },
       {
-        route: "/income-and-expenses/edit",
+        route: "/operations/edit",
         title: "Редактирование дохода/расхода",
-        filePathPage: "/pages/income-and-expenses/edit.html",
+        filePathPage: "/pages/operations/edit.html",
         useLayout: "/layouts/main.html",
         load: () => {
-          new IncomeAndExpensesEdit(this.openNewRoute.bind(this));
+          new OperationsEdit(this.openNewRoute.bind(this));
         },
       },
       {
-        route: "/income-and-expenses/delete",
+        route: "/operations/delete",
         load: () => {
-          new IncomeAndExpensesDelete(this.openNewRoute.bind(this));
+          new OperationsDelete(this.openNewRoute.bind(this));
         },
       },
       {
@@ -213,7 +213,7 @@ export class Router {
             let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey);
             if (!this.userName) {
               userInfo = JSON.parse(userInfo);
-              if (userInfo.name || userInfo.lastName) {
+              if (userInfo && (userInfo.name || userInfo.lastName)) {
                 this.userName = [userInfo.name, userInfo.lastName].join(" ");
               }
             }

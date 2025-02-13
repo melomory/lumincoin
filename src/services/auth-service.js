@@ -1,4 +1,4 @@
-import { HttpUtils } from "./../utilities/http-utils.js";
+import { HttpUtils } from "../utilities/http-utils";
 
 export class AuthService {
   static async login(data) {
