@@ -1,3 +1,4 @@
+import { BalanceService } from "../../../services/balance-service";
 import { IncomeCategoryService } from "../../../services/income-category-service";
 import { ValidationUtils } from "../../../utilities/validation-utils";
 
@@ -16,6 +17,8 @@ export class IncomeCategoryCreate {
       .addEventListener("click", this.cancel.bind(this));
 
     this.validations = [{ element: this.categoryNameElement }];
+
+    this.getBalance().then();
   }
 
   /**
@@ -23,6 +26,7 @@ export class IncomeCategoryCreate {
    */
   findElements() {
     this.categoryNameElement = document.getElementById("category-name");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
@@ -57,5 +61,25 @@ export class IncomeCategoryCreate {
     e.preventDefault();
 
     this.openNewRoute("/income");
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

@@ -1,3 +1,4 @@
+import { BalanceService } from "../../services/balance-service.js";
 import { ExpensesCategoryService } from "../../services/expenses-category-service.js";
 import { IncomeCategoryService } from "../../services/income-category-service.js";
 import { OperationsService } from "../../services/operations-service.js";
@@ -27,7 +28,7 @@ export class OperationsEdit {
       const categories = await this.getCategories(this.typeElement.value);
 
       if (categories) {
-        this.populateCategoryControl(categories);
+        this.populateCategoryControl(categories, null);
       }
     });
 
@@ -39,7 +40,7 @@ export class OperationsEdit {
       },
       {
         element: this.amountElement,
-        options: { pattern: /^\d*(\.|,)?\d+$/ },
+        options: { pattern: /^\d*([.,])?\d+$/ },
       },
       { element: this.dateElement },
       { element: this.commentElement },
@@ -74,6 +75,7 @@ export class OperationsEdit {
     this.amountElement = document.getElementById("amount");
     this.dateElement = document.getElementById("date");
     this.commentElement = document.getElementById("comment");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
@@ -84,7 +86,7 @@ export class OperationsEdit {
     const operation = await this.getOperation(id);
 
     if (operation) {
-      this.typeElement.value = operation.type === "income" ? "Доход" : "Расход";
+      this.typeElement.value = operation.type; //= operation.type === "income" ? "Доход" : "Расход";
       this.amountElement.value = operation.amount;
       this.commentElement.value = operation.comment;
 
@@ -97,6 +99,8 @@ export class OperationsEdit {
       let date = operation.date.split("-");
       this.dateElement.value = `${date[2]}.${date[1]}.${date[0]}`;
     }
+
+    await this.getBalance();
   }
 
   /**
@@ -209,5 +213,25 @@ export class OperationsEdit {
     e.preventDefault();
 
     this.openNewRoute("/operations");
+  }
+
+  /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

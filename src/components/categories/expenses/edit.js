@@ -1,3 +1,4 @@
+import { BalanceService } from "../../../services/balance-service";
 import { ExpensesCategoryService } from "../../../services/expenses-category-service";
 import { UrlUtils } from "../../../utilities/url-utils";
 import { ValidationUtils } from "../../../utilities/validation-utils";
@@ -30,6 +31,7 @@ export class ExpensesCategoryEdit {
    */
   findElements() {
     this.categoryNameElement = document.getElementById("category-name");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
@@ -41,6 +43,8 @@ export class ExpensesCategoryEdit {
     if (category) {
       this.categoryNameElement.value = category.title;
     }
+
+    await this.getBalance();
   }
 
   /**
@@ -109,6 +113,26 @@ export class ExpensesCategoryEdit {
   cancel(e) {
     e.preventDefault();
 
-    this.openNewRoute("/expenses")
+    this.openNewRoute("/expenses");
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

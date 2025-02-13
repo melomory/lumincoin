@@ -1,3 +1,4 @@
+import { BalanceService } from "../../services/balance-service.js";
 import { ExpensesCategoryService } from "../../services/expenses-category-service.js";
 import { IncomeCategoryService } from "../../services/income-category-service.js";
 import { OperationsService } from "../../services/operations-service.js";
@@ -34,7 +35,7 @@ export class OperationsCreate {
       },
       {
         element: this.amountElement,
-        options: { pattern: /^\d*(\.|,)?\d+$/ },
+        options: { pattern: /^\d*([.,])?\d+$/ },
       },
       { element: this.dateElement },
       { element: this.commentElement },
@@ -69,6 +70,7 @@ export class OperationsCreate {
     this.amountElement = document.getElementById("amount");
     this.dateElement = document.getElementById("date");
     this.commentElement = document.getElementById("comment");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
@@ -85,6 +87,8 @@ export class OperationsCreate {
         this.populateCategoryControl(categories);
       }
     }
+
+    await this.getBalance();
   }
 
   /**
@@ -165,5 +169,25 @@ export class OperationsCreate {
     e.preventDefault();
 
     this.openNewRoute("/operations");
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

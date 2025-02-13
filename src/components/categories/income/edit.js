@@ -1,3 +1,4 @@
+import { BalanceService } from "../../../services/balance-service.js";
 import { IncomeCategoryService } from "../../../services/income-category-service.js";
 import { UrlUtils } from "../../../utilities/url-utils.js";
 import { ValidationUtils } from "../../../utilities/validation-utils.js";
@@ -31,6 +32,7 @@ export class IncomeCategoryEdit {
    */
   findElements() {
     this.categoryNameElement = document.getElementById("category-name");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
@@ -42,6 +44,8 @@ export class IncomeCategoryEdit {
     if (category) {
       this.categoryNameElement.value = category.title;
     }
+
+    await this.getBalance();
   }
 
   /**
@@ -111,5 +115,25 @@ export class IncomeCategoryEdit {
     e.preventDefault();
 
     this.openNewRoute("/expenses");
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

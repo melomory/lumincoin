@@ -1,3 +1,4 @@
+import { BalanceService } from "../../services/balance-service.js";
 import { OperationsService } from "../../services/operations-service.js";
 
 export class OperationsList {
@@ -68,23 +69,24 @@ export class OperationsList {
     );
 
     this.setFilter().then();
+    this.getBalance().then();
   }
 
   /**
    * Найти элементы на странице.
    */
   findElements() {
-    this.categoryNameElement = document.getElementById("category-name");
     this.periodFilters = document.querySelectorAll("[name=dates]");
     this.optionIntervalFromElement = document.getElementById(
       "option-interval-from"
     );
     this.optionIntervalToElement =
       document.getElementById("option-interval-to");
+    this.balanceElement = document.getElementById("balance");
   }
 
   /**
-   * Получить категории.
+   * Получить операции.
    * @returns {string} Маршрут перенаправления.
    */
   async getOperations() {
@@ -103,8 +105,7 @@ export class OperationsList {
    */
   async setFilter() {
     const current = [...this.periodFilters].filter((item) => item.checked)[0];
-    const periodType = current.id.replace("option-", "");
-    this.currentFilter.period = periodType;
+    this.currentFilter.period = current.id.replace("option-", "");
 
     if (this.currentFilter.period === "interval") {
       if (
@@ -191,5 +192,25 @@ export class OperationsList {
 
       recordsElement.appendChild(trElement);
     }
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

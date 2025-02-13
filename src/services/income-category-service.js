@@ -59,6 +59,11 @@ export class IncomeCategoryService {
     return returnObject;
   }
 
+  /**
+   * Удалить категорию.
+   * @param {Number} id Ид категории.
+   * @returns {Object} Результат удаления.
+   */
   static async deleteCategory(id) {
     const returnObject = {
       error: false,
@@ -66,7 +71,7 @@ export class IncomeCategoryService {
     };
 
     const result = await HttpUtils.request(
-      "/categories/income/" + id,
+      `/categories/income/${id}`,
       "DELETE",
       true
     );
@@ -121,39 +126,6 @@ export class IncomeCategoryService {
     }
 
     returnObject.category = result.response;
-
-    return returnObject;
-  }
-
-  /**
-   * Удалить категорию.
-   * @param {Number} id Ид категории.
-   * @returns {Object} Результат удаления.
-   */
-  static async deleteCategory(id) {
-    const returnObject = {
-      error: false,
-      redirect: null,
-    };
-
-    const result = await HttpUtils.request(
-      "/categories/income/" + id,
-      "DELETE",
-      true
-    );
-
-    if (
-      result.redirect ||
-      result.error ||
-      !result.response ||
-      (result.response && result.response.error)
-    ) {
-      returnObject.error = "Возникла ошибка при удалении категории.";
-      if (result.redirect) {
-        returnObject.redirect = result.redirect;
-      }
-      return returnObject;
-    }
 
     return returnObject;
   }

@@ -1,9 +1,14 @@
+import { BalanceService } from "../../../services/balance-service";
 import { IncomeCategoryService } from "../../../services/income-category-service";
 
 export class IncomeCategoryList {
   constructor(openNewRoute) {
     this.openNewRoute = openNewRoute;
-    this.getCategories().then();
+
+    this.balanceElement = document.getElementById("balance");
+
+    this.getCategories();
+    this.getBalance().then();
   }
 
   /**
@@ -38,7 +43,7 @@ export class IncomeCategoryList {
       cardTitleElement.classList.add("card-title", "fs-3");
       cardTitleElement.setAttribute("data-bs-toggle", "tooltip");
       cardTitleElement.setAttribute("title", "Депозиты");
-      cardTitleElement.innerText = categories[i].title
+      cardTitleElement.innerText = categories[i].title;
 
       const cardEditButtonElement = document.createElement("a");
       cardEditButtonElement.classList.add("btn", "btn-primary", "me-2");
@@ -61,7 +66,15 @@ export class IncomeCategoryList {
     }
 
     const cardEmptyElement = document.createElement("div");
-    cardEmptyElement.classList.add("card", "p-1", "blank", "fs-3", "d-flex", "align-items-center", "justify-content-center");
+    cardEmptyElement.classList.add(
+      "card",
+      "p-1",
+      "blank",
+      "fs-3",
+      "d-flex",
+      "align-items-center",
+      "justify-content-center"
+    );
     cardEmptyElement.onclick = () => this.openNewRoute("/income/create");
 
     const signElement = document.createElement("p");
@@ -70,5 +83,25 @@ export class IncomeCategoryList {
 
     cardEmptyElement.appendChild(signElement);
     categoriesElement.appendChild(cardEmptyElement);
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }

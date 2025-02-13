@@ -1,9 +1,14 @@
+import { BalanceService } from "../../../services/balance-service";
 import { ExpensesCategoryService } from "../../../services/expenses-category-service";
 
 export class ExpensesCategoryList {
   constructor(openNewRoute) {
     this.openNewRoute = openNewRoute;
-    this.getCategories().then();
+
+    this.balanceElement = document.getElementById("balance");
+
+    this.getCategories();
+    this.getBalance().then();
   }
 
   /**
@@ -78,5 +83,25 @@ export class ExpensesCategoryList {
 
     cardEmptyElement.appendChild(signElement);
     categoriesElement.appendChild(cardEmptyElement);
+  }
+
+    /**
+   * Получить баланс.
+   * @returns {Number} Баланс.
+   */
+  async getBalance() {
+    const result = await BalanceService.getBalance();
+
+    if (
+      result.error ||
+      !result.balance ||
+      (result.balance && !result.balance)
+    ) {
+      return alert("Возникла ошибка при запросе баланса.");
+    }
+
+    this.balanceElement.innerText = `${result.balance}$`;
+
+    return result.balance;
   }
 }
