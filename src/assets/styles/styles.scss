@@ -50,8 +50,10 @@ body {
     mask-size: cover;
     transition: transform 0.35s ease;
     transform-origin: 0.5em 50%;
-    color: #052c65;
+    background-color: #052c65;
     margin-left: auto;
+    width: 1em;
+    height: 1em;
   }
 
   .btn-toggle[aria-expanded="true"]::after {
@@ -65,6 +67,10 @@ body {
 
     .btn-toggle {
       color: #fff !important;
+    }
+
+    .btn-toggle::after {
+      background-color: #fff;
     }
 
     .nav-item:not(:has(> .nav-link.active)) {
