@@ -1,80 +1,6 @@
 <section class="category-list income-list">
   <h1 class="my-5 pt-5">Доходы</h1>
-  <div class="d-flex flex-wrap gap-4 pe-3">
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Депозиты">
-          Депозиты
-        </h2>
-        <a href="/income/edit?id=" class="btn btn-primary me-2"
-          >Редактировать</a
-        >
-        <a
-          href="/income/delete?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Зарплата">
-          Зарплата
-        </h2>
-        <a href="/income/edit?id=" class="btn btn-primary me-2"
-          >Редактировать</a
-        >
-        <a
-          href="/income/delete?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Сбережения">
-          Сбережения
-        </h2>
-        <a href="/income/edit?id=" class="btn btn-primary me-2"
-          >Редактировать</a
-        >
-        <a
-          href="/income/delete?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Инвестиции">
-          Инвестиции
-        </h2>
-        <a href="/income/edit?id=" class="btn btn-primary me-2"
-          >Редактировать</a
-        >
-        <a
-          href="/income/delete?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div
-      class="card p-1 blank fs-3 d-flex align-items-center justify-content-center"
-      onclick="{window.location = '/income/create'; /* TODO: удалить после реализации основной логики приложения */}"
-    >
-      <p class="add-sign">+</p>
-    </div>
+  <div class="d-flex flex-wrap gap-4 pe-3" id="categories">
   </div>
   <div
     class="modal fade"
@@ -90,10 +16,10 @@
           удалены навсегда.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="confirm-button">
             Да, удалить
           </button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancel-button">
             Не удалять
           </button>
         </div>

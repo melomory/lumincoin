@@ -50,8 +50,10 @@ body {
     mask-size: cover;
     transition: transform 0.35s ease;
     transform-origin: 0.5em 50%;
-    color: #052c65;
+    background-color: #052c65;
     margin-left: auto;
+    width: 1em;
+    height: 1em;
   }
 
   .btn-toggle[aria-expanded="true"]::after {
@@ -65,6 +67,10 @@ body {
 
     .btn-toggle {
       color: #fff !important;
+    }
+
+    .btn-toggle::after {
+      background-color: #fff;
     }
 
     .nav-item:not(:has(> .nav-link.active)) {
@@ -138,7 +144,7 @@ body {
     }
   }
 
-  div:has(#option-range:checked) + div > .date-control {
+  div:has(#option-interval:checked) + div > .date-control {
     display: flex;
   }
 }
@@ -193,7 +199,7 @@ body {
   max-width: 24.8rem;
 }
 
-.income-and-expenses {
+.operations {
   .btn {
     font-size: 0, 875rem;
     font-weight: 500;
@@ -216,7 +222,7 @@ body {
     }
   }
 
-  div:has(#option-range:checked) + div > .date-control {
+  div:has(#option-interval:checked) + div > .date-control {
     display: flex;
   }
 
@@ -236,6 +242,13 @@ body {
 
   .table th:last-of-type {
     width: 4rem;
+  }
+}
+
+.operations-create,
+.operations-edit {
+  .form-select option[disabled] {
+    display: none;
   }
 }
 
@@ -269,4 +282,3 @@ body {
     }
   }
 }
-

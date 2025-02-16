@@ -1,151 +1,6 @@
 <section class="category-list expenses-list">
   <h1 class="my-5 pt-5">Расходы</h1>
-  <div class="d-flex flex-wrap gap-4 pe-3">
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Еда">
-          Еда
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Жильё">
-          Жильё
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Здоровье">
-          Здоровье
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Кафе">
-          Кафе
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Авто">
-          Авто
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Одежда">
-          Одежда
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2
-          class="card-title fs-3"
-          data-bs-toggle="tooltip"
-          title="Развлечения"
-        >
-          Развлечения
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Счета">
-          Счета
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div class="card p-1">
-      <div class="card-body">
-        <h2 class="card-title fs-3" data-bs-toggle="tooltip" title="Спорт">
-          Спорт
-        </h2>
-        <a href="/expenses/edit?id=" class="btn btn-primary me-2">Редактировать</a>
-        <a
-          href="/expenses/edit?id="
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-action"
-          >Удалить</a
-        >
-      </div>
-    </div>
-    <div
-      class="card p-1 blank fs-3 d-flex align-items-center justify-content-center"
-      onclick="{window.location = '/expenses/create'; /* TODO: удалить после реализации основной логики приложения */}"
-    >
-      <p class="add-sign">+</p>
-    </div>
+  <div class="d-flex flex-wrap gap-4 pe-3" id="categories">
   </div>
   <div
     class="modal fade"
@@ -160,10 +15,10 @@
           Вы действительно хотите удалить категорию?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="confirm-button">
             Да, удалить
           </button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancel-button">
             Не удалять
           </button>
         </div>

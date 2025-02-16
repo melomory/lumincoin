@@ -1,8 +1,8 @@
-<section class="income-and-expenses">
+<section class="operations">
   <h1 class="my-5 pt-5 pb-3">Доходы и расходы</h1>
   <div class="d-flex gap-4 mb-5">
-    <a href="/income-and-expenses/create" class="btn btn-success">Создать доход</a>
-    <a href="/income-and-expenses/create" class="btn btn-danger">Создать расход</a>
+    <a href="/operations/create?type=income" class="btn btn-success" id="create-income">Создать доход</a>
+    <a href="/operations/create?type=expense" class="btn btn-danger" id="create-expense">Создать расход</a>
   </div>
   <div>
     <div class="d-flex gap-4 mb-5 flex-wrap">
@@ -68,28 +68,28 @@
           type="radio"
           class="btn-check"
           name="dates"
-          id="option-range"
+          id="option-interval"
           autocomplete="off"
         />
-        <label class="btn btn-outline-secondary" for="option-range"
+        <label class="btn btn-outline-secondary" for="option-interval"
           >Интервал</label
         >
       </div>
       <div class="d-flex gap-4 flex-wrap">
         <div class="date-control">
-          <label class="" for="option-range-from">c</label>
+          <label class="" for="option-interval-from">c</label>
           <input
-            id="option-range-from"
+            id="option-interval-from"
             autocomplete="off"
             type="text"
             placeholder="Дата"
           />
         </div>
         <div class="date-control">
-          <label class="" for="option-range-to">по</label>
+          <label class="" for="option-interval-to">по</label>
           <input
             type="text"
-            id="option-range-to"
+            id="option-interval-to"
             autocomplete="off"
             placeholder="Дата"
           />
@@ -111,48 +111,6 @@
             </tr>
           </thead>
           <tbody id="records">
-            <tr>
-              <td class="fw-bold">1</td>
-              <td class="text-success">доход</td>
-              <td>зарплата</td>
-              <td>500$</td>
-              <td>11.09.2022</td>
-              <td></td>
-              <td>
-                <div class="d-flex gap-2 tools">
-                  <a
-                    href="/income-and-expenses/delete?id="
-                    data-bs-toggle="modal"
-                    data-bs-target="#delete-action"
-                    ><img src="/assets/images/icons/trash.svg" alt=""
-                  /></a>
-                  <a href="/income-and-expenses/edit?id="
-                    ><img src="/assets/images/icons/pen.svg" alt=""
-                  /></a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="fw-bold">2</td>
-              <td class="text-danger">расход</td>
-              <td>жильё</td>
-              <td>2 500$</td>
-              <td>12.09.2022</td>
-              <td></td>
-              <td>
-                <div class="d-flex gap-2 tools">
-                  <a
-                    href="/income-and-expenses/delete?id="
-                    data-bs-toggle="modal"
-                    data-bs-target="#delete-action"
-                    ><img src="/assets/images/icons/trash.svg" alt=""
-                  /></a>
-                  <a href="/income-and-expenses/edit?id="
-                    ><img src="/assets/images/icons/pen.svg" alt=""
-                  /></a>
-                </div>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -166,10 +124,10 @@
           Вы действительно хотите удалить операцию?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="confirm-button">
             Да, удалить
           </button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancel-button">
             Не удалять
           </button>
         </div>
