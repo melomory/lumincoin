@@ -63,18 +63,14 @@ export class IncomeCategoryCreate {
     this.openNewRoute("/income");
   }
 
-    /**
+  /**
    * Получить баланс.
    * @returns {Number} Баланс.
    */
   async getBalance() {
     const result = await BalanceService.getBalance();
 
-    if (
-      result.error ||
-      !result.balance ||
-      (result.balance && !result.balance)
-    ) {
+    if (result.error || isNaN(result.balance)) {
       return alert("Возникла ошибка при запросе баланса.");
     }
 
